@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRD</title>
+
+</head>
+<style>
+  html {
+    height: 100%;
+  }
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background-image: url(img.jpg.jpg);
+  }
+  
+  .login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .login h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #17c3e1cb;
+    text-align: center;
+  }
+  
+  .login .user {
+    position: relative;
+  }
+  
+  .login .user input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
+    outline: none;
+    background: transparent;
+  }
+  .login .user label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login .user input:focus ~ label,
+  .login .user input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #a3e20f8d;
+    font-size: 16px;
+  }
+  
+  .form-link{
+    /* position: relative; */
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .2s;
+    /* margin-top: 40px;     */
+    letter-spacing: 4px
+  }
+  
+  .form-link:hover {
+    background: #698282;
+    color:white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #062628,
+  }
+  
+  
+</style>
+<body>
+  <div class="login">
+    <h2>Velediction Form</h2>
+      <form action="" id="form">
+        <div class="user">
+          <input type="text" id="username">
+          <label>Username</label>
+          <p id="e1" style="color: red; margin-top: 2px;"></p>
+        </div>
+        <div class="user">
+          <input type="email"id="email">
+          <label>Email</label>
+          <p id="e2" style="color: red; margin-top: 2px;"></p>
+        </div>
+        <div class="user">
+          <input type="password" id="password">
+          <label>Password</label>
+          <p id="e3" style="color: red; margin-top: 2px;"></p>
+        </div>
+        <div class="user">
+          <input type="password" id="confirm-password">
+          <label>confirm Password</label>
+          <p id="e4" style="color: red; margin-top: 2px;"></p>
+        </div>
+        <p id="para5" style="color: red; margin-top: 2px;"></p>
+        <a href="#" class="form-link" onclick="Submit()">Submit</a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function Submit() {
+    let username= document.getElementById("username").value;
+    let email= document.getElementById("email").value;
+    let passsword= document.getElementById("password").value;
+    let confirmPasssword= document.getElementById("confirm-password").value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (username == "") {
+        let res1 = document.getElementById("e1");
+        res1.innerHTML="Username required" 
+    }
+    else if (email=="" ) {
+        let res2 = document.getElementById("e2");
+        res2.innerHTML="Email cannot blank";
+    }
+    else if (!emailRegex.test(email)) {
+        let res2 = document.getElementById("e2");
+        res2.innerHTML="Enter proper Email"; 
+    } 
+    else if ((passsword=="")) {
+      let res3 = document.getElementById("e3");
+     res3.innerHTML="Enter valid password";
+    }
+    else if (passsword.length<6 || passsword.length>16) {
+        let res3 = document.getElementById("e3");
+        res3.innerHTML=" must contain 6 character";
+    }
+   else if(confirmPasssword != passsword) {
+        let res4 = document.getElementById("e4");
+        res4.innerHTML="Password must be same";
+        res4.style.color="red";
+    }
+    else{
+        let res4 = document.getElementById("e4");
+        res4.innerHTML=" login success";
+        res4.style.color="green";
+        window.location.replace("welcome.html"); 
+    } 
+}
+  </script>
+</body>
+
+</html>
